@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run build:pagefind",
     "build:pagefind": "pagefind --site .next/server/app --output-path public/_pagefind",
     "analyze": "ANALYZE=true next build",
     "start": "next start",
@@ -35,6 +35,7 @@
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "^15.3.1",
     "@octokit/rest": "^22.0.0",
+    "@pagefind/default-ui": "^1.4.0",
     "@tabler/icons-react": "^3.31.0",
     "@uiw/codemirror-theme-vscode": "^4.23.12",
     "@uiw/react-codemirror": "^4.23.12",

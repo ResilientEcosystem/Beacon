@@ -52,4 +52,18 @@ export default withNextra(
       maxInactiveAge: 25 * 1000,
       pagesBufferLength: 2,
     },
-  }));
+
+    // 🔑 Add this to ensure Pagefind files are accessible
+    async headers() {
+      return [
+        {
+          source: '/_pagefind/:path*',
+          headers: [
+            { key: 'Access-Control-Allow-Origin', value: '*' },
+            { key: 'Cache-Control', value: 'public, max-age=3600, immutable' },
+          ],
+        },
+      ];
+    },
+  })
+);
