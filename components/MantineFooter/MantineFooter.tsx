@@ -70,6 +70,7 @@ export const MantineFooter = () => (
                 fontSize: "1.5rem",
                 textAlign: "left",
                 marginBottom: "0.5rem",
+                padding: "6px 12px",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-2px)"
@@ -188,6 +189,7 @@ export const MantineFooter = () => (
                 fontSize: "1.5rem",
                 textAlign: "left",
                 marginBottom: "0.5rem",
+                padding: "6px 12px",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-2px)"
