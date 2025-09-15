@@ -338,7 +338,7 @@ export default function ResilientDBLanding() {
                 size="lg"
                 radius="xl"
                 variant="outline"
-                color="gray"
+                color="white"
                 leftSection={<IconWorld size={20} />}
                 style={{
                   background: 'rgba(37, 38, 43, 0.5)',
