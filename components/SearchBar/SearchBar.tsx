@@ -16,30 +16,46 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-
 'use client'
 
+import { useEffect, useState } from 'react';
 import { Button } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
 export function SearchBar() {
-  const handleSearch = () => {
-    // This triggers Nextra's built-in search using keyboard shortcut
-    const event = new KeyboardEvent('keydown', {
-      key: 'k',
-      metaKey: true, // For Mac
-      ctrlKey: true, // For Windows/Linux
+  const [pagefindReady, setPagefindReady] = useState(false);
+
+  useEffect(() => {
+    import('@pagefind/default-ui').then((PagefindUI) => {
+      new PagefindUI({
+        element: "#search",
+        showImages: false,
+        basePath: "/_pagefind/", // 👈 ensures correct path
+      });
+      setPagefindReady(true);
     });
-    document.dispatchEvent(event);
+  }, []);
+
+  const handleSearch = () => {
+    const searchElement = document.querySelector("#search") as HTMLElement;
+    if (searchElement) {
+      searchElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <Button
-      onClick={handleSearch}
-      leftSection={<IconSearch size={20} />}
-      variant="subtle"
-    >
-      Search
-    </Button>
+    <>
+      <Button
+        onClick={handleSearch}
+        leftSection={<IconSearch size={20} />}
+        variant="subtle"
+        disabled={!pagefindReady}
+      >
+        Search
+      </Button>
+
+      {/* Pagefind search box gets injected here */}
+      <div id="search" style={{ marginTop: "1rem" }} />
+    </>
   );
-} 
+}
