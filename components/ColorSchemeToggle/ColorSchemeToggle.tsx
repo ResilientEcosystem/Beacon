@@ -1,62 +1,43 @@
-/*
-* Licensed to the Apache Software Foundation (ASF) under one
-* or more contributor license agreements.  See the NOTICE file
-* distributed with this work for additional information
-* regarding copyright ownership.  The ASF licenses this file
-* to you under the Apache License, Version 2.0 (the
-* "License"); you may not use this file except in compliance
-* with the License.  You may obtain a copy of the License at
-* 
-*   http://www.apache.org/licenses/LICENSE-2.0
-* 
-* Unless required by applicable law or agreed to in writing,
-* software distributed under the License is distributed on an
-* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-* KIND, either express or implied.  See the License for the
-* specific language governing permissions and limitations
-* under the License.
-*/
-
 'use client';
 
 import { useTheme } from 'next-themes';
-import { Button, Group, useMantineColorScheme } from '@mantine/core';
+import { ActionIcon, Group, useMantineColorScheme } from '@mantine/core';
+import { Sun, Moon, Monitor } from 'lucide-react';
 
 export function ColorSchemeToggle() {
+  const { theme, setTheme } = useTheme();
   const { setColorScheme } = useMantineColorScheme();
-  const { setTheme } = useTheme();
 
-  /**
-   * You might improve this component. Anyway, it's a good starting point.
-   * As you can see we have to handle both the Mantine and Nextra dark mode.
-   */
+  const toggleTheme = (mode: 'light' | 'dark' | 'system') => {
+    setTheme(mode);
+    setColorScheme(mode === 'system' ? 'auto' : mode);
+  };
 
   return (
     <Group justify="center" mt="xl">
-      <Button
-        onClick={() => {
-          setColorScheme('light');
-          setTheme('light');
-        }}
+      <ActionIcon
+        variant={theme === 'light' ? 'filled' : 'default'}
+        onClick={() => toggleTheme('light')}
+        title="Switch to Light mode"
       >
-        Light
-      </Button>
-      <Button
-        onClick={() => {
-          setColorScheme('dark');
-          setTheme('dark');
-        }}
+        <Sun size={18} />
+      </ActionIcon>
+
+      <ActionIcon
+        variant={theme === 'dark' ? 'filled' : 'default'}
+        onClick={() => toggleTheme('dark')}
+        title="Switch to Dark mode"
       >
-        Dark
-      </Button>
-      <Button
-        onClick={() => {
-          setColorScheme('auto');
-          setTheme('system');
-        }}
+        <Moon size={18} />
+      </ActionIcon>
+
+      <ActionIcon
+        variant={theme === 'system' ? 'filled' : 'default'}
+        onClick={() => toggleTheme('system')}
+        title="Follow System preference"
       >
-        Auto
-      </Button>
+        <Monitor size={18} />
+      </ActionIcon>
     </Group>
   );
 }

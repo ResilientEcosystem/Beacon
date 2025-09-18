@@ -21,11 +21,14 @@
 
 import { TextAnimate } from '@gfazioli/mantine-text-animate';
 import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
-import { Anchor, Button, Center, Paper, Text, Title } from '@mantine/core';
+import { Anchor, Button, Center, Paper, Text, Title, useMantineColorScheme } from '@mantine/core';
 import pack from '../../package.json';
 import classes from './Welcome.module.css';
 
 export function Welcome() {
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+
   return (
     <>
       <Title maw="90vw" mx="auto" ta="center" mt={100}>
@@ -58,19 +61,23 @@ export function Welcome() {
 
       <Center>
         <Button
-          href="https://resilientdb.incubator.apache.org/"
-          component="a"
-          rightSection={<IconExternalLink />}
-          leftSection={<IconBrandGithub />}
-          variant="outline"
-          px={32}
-          radius={256}
-          size="lg"
-          mx="auto"
-          mt="xl"
-        >
-          Latest Release v{pack.version}
-        </Button>
+                href="https://resilientdb.incubator.apache.org/"
+                component="a"
+                leftSection={<IconBrandGithub size={18} />}
+                rightSection={<IconExternalLink size={18} />}
+                variant={isDark ? 'outline' : 'gradient'} // dark: outline, light: gradient
+                gradient={isDark ? undefined : { from: 'blue', to: 'cyan' }} // gradient only for light mode
+                color={isDark ? 'gray' : undefined} // fallback color for dark mode
+                px={32}
+                radius="xl"
+                size="lg"
+                mx="auto"
+                mt="xl"
+              >
+  Latest Release v{pack.version}
+</Button>
+
+
       </Center>
 
       <Paper shadow="xl" p={8} mih={300} my={32} bg="dark.9" mx="auto" radius={8}>
