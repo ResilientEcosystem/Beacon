@@ -204,7 +204,7 @@ async def set_transaction(key, value):
             'value': value
         })
     )
-    return await response.json()
+    return await response.text()
 
 # Get a transaction
 async def get_transaction(key):
