@@ -45,7 +45,7 @@
     "framer-motion": "12.23.14",
     "gray-matter": "^4.0.3",
     "internmap": "^2.0.3",
-    "next": "15.3.2",
+    "next": "15.3.8",
     "next-auth": "^4.24.11",
     "nextra": "4.3.0-alpha.22",
     "nextra-theme-docs": "4.3.0-alpha.22",
